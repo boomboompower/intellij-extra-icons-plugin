@@ -1,5 +1,9 @@
 name: Build
-on: [ push, pull_request ]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:  # Allow manual triggering
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -23,3 +27,17 @@ jobs:
 
       - name: Build and verify
         run: ./gradlew clean buildPlugin test modernizer biz-lermitage-oga-gradle-check verifyPlugin showGeneratedPlugin -PpluginLicenseType=subscription -PpluginIdeaVersion=${{ matrix.ij }} --warning-mode all
+
+      # Upload the build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts-${{ matrix.ij }}
+          path: |
+            build/libs/*.jar
+            build/reports/**/*.html
+            build/test-results/**/*.xml
+            build/*/*.log
+            build/*/*.txt
+            build/*.zip
+            # You can add other paths as needed, depending on what files you want to capture
