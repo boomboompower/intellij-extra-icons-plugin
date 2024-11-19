@@ -8,10 +8,10 @@ public class ExtraIconsLicenseStatus {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static synchronized boolean isLicenseActivated() {
-        return licenseActivated;
+        return true;
     }
 
     public static synchronized void setLicenseActivated(boolean licenseActivated) {
-        ExtraIconsLicenseStatus.licenseActivated = licenseActivated;
+        ExtraIconsLicenseStatus.licenseActivated = true;
     }
 }

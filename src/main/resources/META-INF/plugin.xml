@@ -116,10 +116,6 @@
         <postStartupActivity implementation="lermitage.intellij.extra.icons.activity.VFSChangesListenersProjectActivity"
                              id="ExtraIcons_VFSChangesListenersProjectActivity"
                              order="last, after ExtraIcons_EnablerServicesProjectActivity"/>
-        <!-- Check plugin's license activation -->
-        <backgroundPostStartupActivity implementation="lermitage.intellij.extra.icons.activity.ExtraIconsLicenseCheckIDEActivity"
-                                       id="ExtraIcons_LicCheckProjectActivity"
-                                       order="last"/>
     </extensions>
 
 </idea-plugin>

@@ -23,7 +23,7 @@ public enum ExtraIconsPluginType {
     ExtraIconsPluginType(String pluginId, String productCode, boolean requiresLicense) {
         this.pluginId = pluginId;
         this.productCode = productCode;
-        this.requiresLicense = requiresLicense;
+        this.requiresLicense = false;
     }
 
     public @NotNull String getPluginId() {

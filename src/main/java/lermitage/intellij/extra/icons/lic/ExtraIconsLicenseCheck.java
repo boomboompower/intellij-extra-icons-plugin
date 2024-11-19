@@ -128,34 +128,7 @@ PdiG2uPH5eDO6INcisyPpLS4yFKliaO4Jjap7yzLU9pbItoWgCAYa2NpxuxHJ0tB
      */
     @Nullable
     public static Boolean isLicensed(final String productCode) {
-        LOGGER.info("productCode=" + productCode);
-        final LicensingFacade facade = LicensingFacade.getInstance();
-        if (facade == null) {
-            LOGGER.info("LicensingFacade is not ready yet (null)");
-            return null;
-        }
-        final String cstamp = facade.getConfirmationStamp(productCode);
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("cstamp=" + cstamp);
-        } else {
-            LOGGER.info("cstamp=" + (cstamp == null ? "null" : cstamp.substring(0, Math.min(15, cstamp.length())) + "... (truncated for privacy)"));
-        }
-        if (cstamp == null) {
-            return false;
-        }
-        if (cstamp.startsWith(KEY_PREFIX)) {
-            LOGGER.info("cstamp: the license is obtained via JetBrainsAccount or entered as an activation code");
-            return isKeyValid(cstamp.substring(KEY_PREFIX.length()));
-        }
-        if (cstamp.startsWith(STAMP_PREFIX)) {
-            LOGGER.info("cstamp: licensed via ticket obtained from JetBrains Floating License Server");
-            return isLicenseServerStampValid(cstamp.substring(STAMP_PREFIX.length()));
-        }
-        if (cstamp.startsWith(EVAL_PREFIX)) {
-            LOGGER.info("cstamp: evaluation mode");
-            return isEvaluationValid(cstamp.substring(EVAL_PREFIX.length()));
-        }
-        return false;
+        return true;
     }
 
     public static void requestLicense(final String productCode, final String message) {
