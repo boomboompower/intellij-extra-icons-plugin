@@ -136,19 +136,6 @@ testlogger {
 }
 
 tasks {
-    register("verifyProductDescriptor") {
-        // Ensure generated plugin requires a paid license
-        doLast {
-            val pluginXmlStr = pluginXmlFile.readText()
-            if (!pluginXmlStr.contains("<product-descriptor")) {
-                throw GradleException("plugin.xml: Product Descriptor is missing")
-            }
-            if (pluginXmlStr.contains("//FREE_LIC//")) {
-                throw GradleException("plugin.xml: Product Descriptor is commented")
-            }
-        }
-    }
-
     register("updatePluginCompatibilityRulesFromPluginXml") {
         doLast {
             var pluginXmlStr = pluginXmlFile.readText()
@@ -396,11 +383,11 @@ tasks {
             }
 
             "lifetime" -> {
-                dependsOn("backupPluginLogo", "usePluginLogoLifetime", "backupPluginXml", "renamePluginInfoToLifetimeInPluginXml", "updatePluginCompatibilityRulesFromPluginXml", "verifyProductDescriptor")
+                dependsOn("backupPluginLogo", "usePluginLogoLifetime", "backupPluginXml", "renamePluginInfoToLifetimeInPluginXml", "updatePluginCompatibilityRulesFromPluginXml")
             }
 
             else -> {
-                dependsOn("backupPluginXml", "updatePluginCompatibilityRulesFromPluginXml", "verifyProductDescriptor")
+                dependsOn("backupPluginXml", "updatePluginCompatibilityRulesFromPluginXml")
             }
         }
         changeNotes.set(provider {
