@@ -26,11 +26,11 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - name: Build and verify
-        run: ./gradlew clean buildPlugin modernizer biz-lermitage-oga-gradle-check verifyPlugin showGeneratedPlugin -PpluginLicenseType=subscription -PpluginIdeaVersion=${{ matrix.ij }} --warning-mode all
+        run: ./gradlew clean buildPlugin modernizer biz-lermitage-oga-gradle-check verifyPlugin showGeneratedPlugin -PpluginLicenseType=lifetime -PpluginIdeaVersion=${{ matrix.ij }} --warning-mode all
 
       # Upload the build artifacts
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts-${{ matrix.ij }}
           path: |
